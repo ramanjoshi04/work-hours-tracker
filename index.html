@@ -10,11 +10,289 @@
 <meta name="theme-color" content="#1A0B0E">
 <title>Work Hours Tracker</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAErElEQVR4nO3dXZLTOhRFYfUtpgXTgCEyDiYGD6rKdaB3Iv9q7+P1">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAErElEQVR4nO3dXZLTOhRFYfUtpgXTgCEyDiYGD6rKdaB3Iv9q7+P1PXfRsrx87DSp5OP31+8N+Mx/sxcAX8QBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSF9mL2CeXz9Hf/LbjzPX4evjRl/jNV7Da7dppXocRwWhlA6lbhxnZ7FUNJFycVzZxL9qVVIojrlZLFVJpEQcPlks5SeS/3cOzzKa8cKGJU+OlN2PHSGxkyOljBa11GeBk+PAvR65pi/+dU7S4th5qvafnukLuFBUHJtPzBmnxGox58iJY8PJuOY02C5st5A41p6A63fff4XrJcSxat/nbnrQUgfYv5TN2u5VC7B/ies9OXLfj5O78gXjOC7b3xe/aM+/nN+H620lf2dXLMz1/mIZx+BmffvhW0Y3vkLLPizjGGGexVLQUp/5xTFyDcVt98X/iXMQszhKltEF9mEWB5w4xVF4bHRpw8MmjvJldFF92MTxVoEyupwD8YjD5lpx4bEhHnG8lXO1DQk5HIM43l4lIVu5ztuDMhgeBnHAlX0cJcdGZ39os+MwGJ6+Zm/O7Dhes7+29vI+wKlxzL4yAkzdIu/JgamM4/AeuYcxPkzjODDbvDh44Bg0b6NcJ4fxsD2e68G6xgEDxAGJOCBNioOn0VUmbZfl5HB9QDuR5SFbxgEPxAGJOF769fPOj0fEMeCuidz4m5rWevRh+fB4BuJ4PtkjE6L/zA0SIY6tbjBIeOZY2PZgUfeJhMlxkIqDhDgWHud1zyQo9ERCHJ/pp3Z/Ii27EstnDpNbeP+4N9sPUD/fpDiyrqfNiRx1mJO2i9vKsEOeSKJY3lbM+X/+6UGYHFvdYJC4To6gHVeDhI+33q7YZD7vpc28jXKdHLkKPZEYx+E6bIfk31OadRyYbWocVcbviaZukffkMB65x/A+wNlxMDxemL05s+N4y/va2sX+0OzjwDwGcSR8lu/xEj632SCOEcX6CDkcjzgMrhIvHhviEceIkKvtvZwDsYkj6iuMtov6QiqbONoN+ogqo3nFATNmcRQeHmljo9nF0Yr2EVhGc4xjUFAfQUt99vH76/fZa/jM+Ib6XXD/Cz8K18lR4J1U4WU03zhaeB/5ZTTf28rDqhPvsNFxC9aMJ0e3avumj5BCZbSAydGtPevX77v/CtcLiaNtmgq2n56QUEZLiqPtuGuccTKsFnOOqDja7qeK/Sdm+gIulBZHO/Sp8+I/1UeV0SLj6Ka/MFklLYvO/qWsErTdQUt9Fjs5HpxHSGwWXezkeLA9AbYLG5Y/OR58Rkh+Fl2hOLq5iVTJoisXx8OVldRq4qFuHN3ZiRTNoqsex9JRoZQOYulOcfylxPtxTnXjOPBO/t85cBrigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckP4Ahew40hAkNwEAAAAASUVORK5CYII=">
 <link rel="icon" href="icon.svg">
-<style>body{background:#1A0B0E;}</style>
+<style>
+:root{--bg:#1A0B0E;--bg2:#26100F;--card:#2A1418;--text:#FDEEEE;--sub:#C89A9E;--muted:#7A5459;
+--accent:#FF3D57;--accent2:#FF6B35;--accent3:#FFB199;--field-bg:#33191D;--field-border:#4A2429;--row-bg:#331A1E;
+--shadow:0 8px 24px rgba(0,0,0,0.5)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);padding-bottom:100px;
+background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);min-height:100vh}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+.hero{margin:14px 14px 0;border-radius:28px;background:linear-gradient(135deg,#FF3D57 0%,#FF6B35 55%,#FFB199 120%);
+padding:28px 20px 24px;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(255,61,87,0.35);animation:fadeUp .4s ease}
+.hero-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.hero-topbar .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#fff}
+.hero-avatar{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:14px}
+.hero-icon{width:64px;height:64px;border-radius:18px;background:rgba(255,255,255,0.22);display:flex;align-items:center;
+justify-content:center;margin:0 auto 14px;backdrop-filter:blur(6px)}
+.hero-icon svg{width:34px;height:34px;color:#fff}
+.hero h1{margin:0 0 4px;font-size:21px;font-weight:800;text-align:center;color:#fff;letter-spacing:-0.3px}
+.hero .byline{text-align:center;font-size:12px;color:rgba(255,255,255,0.9);margin-bottom:16px}
+.tag-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.tag-pill{background:rgba(255,255,255,0.24);color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;backdrop-filter:blur(4px)}
+.container{padding:16px;max-width:480px;margin:0 auto}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:18px;margin-bottom:14px;
+box-shadow:var(--shadow);animation:fadeUp .4s ease}
+.week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.week-nav button{background:var(--row-bg);border:none;color:var(--accent2);font-size:18px;font-weight:bold;
+width:36px;height:36px;border-radius:12px;cursor:pointer;transition:transform .15s}
+.week-nav button:active{transform:scale(0.85)}
+.week-label{font-weight:700;font-size:14.5px;text-align:center;flex:1;color:var(--text)}
+.break-toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--row-bg);
+border-radius:14px;padding:12px 15px;margin-bottom:18px;font-size:12.5px;font-weight:600;color:var(--sub)}
+.switch{position:relative;display:inline-block;width:44px;height:25px}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;inset:0;background:#4A2429;transition:.3s;border-radius:25px}
+.slider:before{position:absolute;content:'';height:19px;width:19px;left:3px;bottom:3px;background:#fff;
+transition:.3s;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+input:checked+.slider{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+input:checked+.slider:before{transform:translateX(19px)}
+.ring-wrap{display:flex;align-items:center;gap:20px}
+.ring{position:relative;width:104px;height:104px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg);filter:drop-shadow(0 2px 10px rgba(255,61,87,0.4))}
+.ring-bg{fill:none;stroke:var(--row-bg);stroke-width:11}
+.ring-fg{fill:none;stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .3s}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-center .num{font-size:21px;font-weight:800;color:var(--text)}
+.ring-center .unit{font-size:10px;color:var(--sub);margin-top:-2px;font-weight:600}
+.ring-info{flex:1}
+.status-badge{display:inline-flex;align-items:center;gap:4px;padding:6px 13px;border-radius:20px;font-size:11.5px;font-weight:700;margin-top:6px}
+.status-ok{background:rgba(60,240,160,0.15);color:#5FF0B0}
+.status-warn{background:rgba(255,184,0,0.15);color:#FFC53D}
+.status-over{background:rgba(255,61,87,0.18);color:#FF7A8C}
+.status-break{background:rgba(255,107,53,0.18);color:#FFA37A}
+.totals-row{font-size:12px;color:var(--sub);margin-top:5px;font-weight:600}
+h3{font-size:15px;margin:0 0 14px;color:var(--text);font-weight:800;display:flex;align-items:center;gap:7px}
+h3 .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.shift-item{display:flex;justify-content:space-between;align-items:center;background:var(--row-bg);
+border-radius:16px;padding:13px 15px;font-size:13px;margin-bottom:9px;animation:popIn .3s ease}
+.shift-item .info{display:flex;flex-direction:column;gap:3px;flex:1}
+.shift-item .info strong{font-size:13.5px;color:var(--text);font-weight:700}
+.shift-item .info span{color:var(--sub);font-size:11.5px}
+.hours{font-weight:800;color:#1A0B0E;margin-right:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:4px 10px;border-radius:9px;font-size:12px}
+.icon-btn{border:none;border-radius:10px;width:31px;height:31px;font-size:13px;cursor:pointer;margin-left:5px;transition:transform .15s}
+.icon-btn:active{transform:scale(0.85)}
+.edit-btn{background:rgba(255,107,53,0.18);color:var(--accent2)}
+.del-btn{background:rgba(255,61,87,0.18);color:var(--accent)}
+.empty-msg{color:var(--muted);font-size:13px;text-align:center;padding:24px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.empty-msg .big{font-size:32px;opacity:0.4}
+form label{display:block;font-size:11.5px;color:var(--sub);margin:14px 0 6px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px}
+form input,form select{width:100%;padding:13px;border:1.5px solid var(--field-border);border-radius:13px;font-size:14px;
+background:var(--field-bg);color:var(--text)}
+form input::placeholder{color:var(--muted)}
+form input:focus,form select:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 0 3px rgba(255,107,53,0.18)}
+.row2{display:flex;gap:10px}
+.row2>div{flex:1}
+.add-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;
+padding:15px;border-radius:16px;font-size:15px;font-weight:800;margin-top:18px;cursor:pointer;
+box-shadow:0 8px 22px rgba(255,61,87,0.4);transition:transform .12s}
+.add-btn:active{transform:scale(0.98)}
+.add-btn.success{background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#1A0B0E}
+.cancel-btn{width:100%;background:var(--row-bg);color:var(--sub);border:none;padding:13px;border-radius:14px;
+font-size:14px;font-weight:700;margin-top:9px;cursor:pointer}
+.secondary-btn{width:100%;background:var(--row-bg);color:var(--accent2);border:none;padding:14px;border-radius:16px;
+font-size:14px;font-weight:700;margin-top:10px;cursor:pointer}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.summary-box{background:var(--row-bg);border-radius:16px;padding:16px;text-align:center}
+.summary-box .val{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;background-clip:text;color:transparent}
+.summary-box .lbl{font-size:10.5px;color:var(--sub);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
+.employer-row{display:flex;justify-content:space-between;align-items:center;background:var(--row-bg);
+border-radius:14px;padding:12px 15px;margin-bottom:8px;font-size:13px}
+.employer-row strong{color:var(--accent2);font-weight:800}
+.tabs{position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);border:1px solid rgba(255,255,255,0.08);
+display:flex;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,0.5);padding:7px;z-index:20;max-width:448px;margin:0 auto}
+.tab-btn{flex:1;text-align:center;padding:10px 0;font-size:11px;color:var(--muted);cursor:pointer;
+border:none;background:none;border-radius:16px;font-weight:700;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab-btn.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 14px rgba(255,61,87,0.45)}
+.tab-btn svg{width:19px;height:19px}
+.view{display:none}
+.view.active{display:block;animation:fadeUp .3s ease}
+.history-week{margin-bottom:12px;background:var(--row-bg);border-radius:16px;padding:14px}
+.history-week .hdr{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:9px}
+.mini-bar{height:8px;background:#1A0B0E;border-radius:6px;overflow:hidden}
+.mini-fill{height:100%;border-radius:6px;transition:width .5s ease}
+#errorBanner{display:none;background:rgba(255,61,87,0.18);color:#FF7A8C;font-size:12px;padding:10px 14px;border-radius:14px;margin:12px 16px 0}
+#installBtn{display:none;width:100%;background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#1A0B0E;border:none;
+padding:15px;border-radius:16px;font-size:15px;font-weight:800;margin-bottom:14px;cursor:pointer;
+box-shadow:0 8px 20px rgba(60,240,160,0.3)}
+</style>
 </head>
 <body>
-<p style="color:#fff;padding:20px;">Loading...</p>
+<div class="hero">
+<div class="hero-topbar">
+<div class="brand"><span>&#9203;</span> Work Hours</div>
+<div class="hero-avatar">RJ</div>
+</div>
+<div class="hero-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+</div>
+<h1>Work Hours Tracker</h1>
+<div class="byline">by you &middot; study permit compliant</div>
+<div class="tag-row">
+<span class="tag-pill">24 hr cap</span>
+<span class="tag-pill">Part-time</span>
+<span class="tag-pill">Canada</span>
+</div>
+</div>
+<div id="errorBanner"></div>
+<div class="container">
+<div class="view active" id="view-week">
+<button id="installBtn">Install App on Home Screen</button>
+<div class="card">
+<div class="week-nav"><button onclick="changeWeek(-1)">&#8249;</button><div class="week-label" id="weekLabel"></div><button onclick="changeWeek(1)">&#8250;</button></div>
+<div class="break-toggle-row"><span>Scheduled break week (no cap)</span><label class="switch"><input type="checkbox" id="breakToggle"><span class="slider"></span></label></div>
+<div class="ring-wrap">
+<div class="ring">
+<svg width="104" height="104" viewBox="0 0 104 104">
+<circle class="ring-bg" cx="52" cy="52" r="44"></circle>
+<circle class="ring-fg" id="ringFg" cx="52" cy="52" r="44" stroke="#3CF0A0" stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
+</svg>
+<div class="ring-center"><span class="num" id="ringNum">0</span><span class="unit">hrs</span></div>
+</div>
+<div class="ring-info">
+<div class="totals-row" id="totalHoursLabel">0 hrs logged</div>
+<div class="totals-row" id="capLabel">24 hr cap</div>
+<span class="status-badge status-ok" id="statusBadge">On track</span>
+</div>
+</div>
+</div>
+<div class="card"><h3><span class="dot"></span>Shifts this week</h3><div id="shiftList"></div></div>
+<div class="card"><h3 id="formTitle"><span class="dot"></span>Add a shift</h3><form id="shiftForm">
+<label>Employer</label><input type="text" id="employer" placeholder="e.g. Campus Cafe" required>
+<label>Day</label><select id="day"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select>
+<div class="row2"><div><label>Start time</label><input type="time" id="startTime" required></div><div><label>End time</label><input type="time" id="endTime" required></div></div>
+<label>Notes (optional)</label><input type="text" id="notes">
+<button type="submit" class="add-btn" id="submitBtn">+ Add Shift</button>
+<button type="button" class="cancel-btn" id="cancelBtn" style="display:none;">Cancel Edit</button>
+</form></div>
+</div>
+<div class="view" id="view-summary">
+<div class="card"><h3><span class="dot"></span>Overall summary</h3><div class="summary-grid">
+<div class="summary-box"><div class="val" id="sumAvg">0</div><div class="lbl">Avg hrs/week</div></div>
+<div class="summary-box"><div class="val" id="sumMax">0</div><div class="lbl">Max week</div></div>
+<div class="summary-box"><div class="val" id="sumWeeks">0</div><div class="lbl">Weeks tracked</div></div>
+<div class="summary-box"><div class="val" id="sumOver">0</div><div class="lbl">Weeks over cap</div></div>
+</div></div>
+<div class="card"><h3><span class="dot"></span>By employer</h3><div id="employerList"></div></div>
+<div class="card"><h3><span class="dot"></span>Week-by-week history</h3><div id="historyList"></div></div>
+<div class="card"><button class="secondary-btn" onclick="exportCSV()">Export All Data (CSV)</button></div>
+</div>
+<div class="view" id="view-info">
+<div class="card"><h3><span class="dot"></span>How this app works</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Log each shift with day, start and end time - hours calculate automatically against the 24-hour/week off-campus cap. Toggle "Scheduled break week" during winter/summer break when the cap doesn't apply. Co-op hours are authorized separately and don't count toward this limit.</p></div>
+<div class="card"><h3><span class="dot"></span>Editing shifts</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Tap the pencil icon on any shift to load it into the form, change it, and tap Save Changes. Tap the X to delete.</p></div>
+<div class="card"><h3><span class="dot"></span>Your data</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Stored privately on your phone. Use Export All Data for a CSV backup.</p>
+<button class="add-btn" style="background:linear-gradient(135deg,#8B1E2E,#5C1420);color:#fff;box-shadow:0 8px 20px rgba(139,30,46,0.4);" onclick="resetData()">Clear All Data</button></div>
+</div>
+</div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchView('week', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Week</button>
+<button class="tab-btn" onclick="switchView('summary', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 20V10M12 20V4M18 20v-7"/></svg>Summary</button>
+<button class="tab-btn" onclick="switchView('info', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Info</button>
+</div>
+<script>
+(function(){
+function showError(m){var b=document.getElementById('errorBanner');if(b){b.style.display='block';b.textContent=m;}}
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('service-worker.js').catch(function(e){});});}
+var deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block';});
+document.getElementById('installBtn').addEventListener('click',function(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(function(){document.getElementById('installBtn').style.display='none';deferredPrompt=null;});}});
+var storageAvailable=true;try{localStorage.setItem('__t__','1');localStorage.removeItem('__t__');}catch(e){storageAvailable=false;showError("Storage isn't available in this mode.");}
+var STORAGE_KEY='workHoursTrackerData';var BREAK_KEY='workHoursTrackerBreaks';var data={};var breakWeeks={};
+try{var raw=storageAvailable?localStorage.getItem(STORAGE_KEY):null;data=raw?JSON.parse(raw):{};var rawB=storageAvailable?localStorage.getItem(BREAK_KEY):null;breakWeeks=rawB?JSON.parse(rawB):{};}catch(e){data={};breakWeeks={};}
+var currentWeekOffset=0;var editingKey=null;var editingIdx=null;
+var RING_C=2*Math.PI*44;
+function getWeekStart(o){var n=new Date();var d=n.getDay();var diff=(d===0?-6:1-d);var m=new Date(n);m.setDate(n.getDate()+diff+o*7);m.setHours(0,0,0,0);return m;}
+function weekKey(m){return m.toISOString().split('T')[0];}
+function formatWeekLabel(m){var s=new Date(m);s.setDate(m.getDate()+6);var o={month:'short',day:'numeric'};return m.toLocaleDateString(undefined,o)+' - '+s.toLocaleDateString(undefined,o);}
+function hoursBetween(a,b){var sp=a.split(':').map(Number);var ep=b.split(':').map(Number);var mins=(ep[0]*60+ep[1])-(sp[0]*60+sp[1]);if(mins<0)mins+=1440;return mins/60;}
+function saveData(){if(storageAvailable){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));localStorage.setItem(BREAK_KEY,JSON.stringify(breakWeeks));}catch(e){}}}
+function resetFormMode(){editingKey=null;editingIdx=null;document.getElementById('formTitle').innerHTML='<span class="dot"></span>Add a shift';document.getElementById('submitBtn').textContent='+ Add Shift';document.getElementById('submitBtn').classList.remove('success');document.getElementById('cancelBtn').style.display='none';document.getElementById('shiftForm').reset();}
+function startEdit(k,i){var sh=data[k][i];editingKey=k;editingIdx=i;document.getElementById('employer').value=sh.employer;document.getElementById('day').value=sh.day;document.getElementById('startTime').value=sh.start;document.getElementById('endTime').value=sh.end;document.getElementById('notes').value=sh.notes||'';document.getElementById('formTitle').innerHTML='<span class="dot"></span>Edit shift';document.getElementById('submitBtn').textContent='Save Changes';document.getElementById('cancelBtn').style.display='block';}
+function submitForm(e){e.preventDefault();var employer=document.getElementById('employer').value.trim();var day=document.getElementById('day').value;var start=document.getElementById('startTime').value;var end=document.getElementById('endTime').value;var notes=document.getElementById('notes').value.trim();var hrs=hoursBetween(start,end);if(editingKey!==null&&editingIdx!==null){data[editingKey][editingIdx]={employer:employer,day:day,start:start,end:end,hours:hrs,notes:notes};}else{var m=getWeekStart(currentWeekOffset);var k=weekKey(m);if(!data[k])data[k]=[];data[k].push({employer:employer,day:day,start:start,end:end,hours:hrs,notes:notes});}saveData();resetFormMode();renderWeek();}
+function deleteShift(k,i){data[k].splice(i,1);saveData();renderWeek();}
+function changeWeek(d){currentWeekOffset+=d;resetFormMode();renderWeek();}
+function toggleBreak(){var m=getWeekStart(currentWeekOffset);var k=weekKey(m);breakWeeks[k]=document.getElementById('breakToggle').checked;saveData();renderWeek();}
+function renderWeek(){
+var m=getWeekStart(currentWeekOffset);var k=weekKey(m);
+document.getElementById('weekLabel').textContent=formatWeekLabel(m)+(currentWeekOffset===0?' (current)':'');
+var isBreak=!!breakWeeks[k];document.getElementById('breakToggle').checked=isBreak;
+var shifts=data[k]||[];var total=shifts.reduce(function(s,sh){return s+sh.hours;},0);
+var cap=isBreak?40:24;var pct=Math.min(total/cap,1);
+var offset=RING_C-(pct*RING_C);
+var ringFg=document.getElementById('ringFg');
+ringFg.style.strokeDashoffset=offset;
+var color=isBreak?'#FFA37A':(total>24?'#FF3D57':total>=20?'#FFC53D':'#3CF0A0');
+ringFg.setAttribute('stroke',color);
+document.getElementById('ringNum').textContent=total.toFixed(1);
+document.getElementById('totalHoursLabel').textContent=total.toFixed(1)+' hrs logged';
+document.getElementById('capLabel').textContent=isBreak?'No cap (break week)':'24 hr cap';
+var badge=document.getElementById('statusBadge');
+if(isBreak){badge.textContent='Break week';badge.className='status-badge status-break';}
+else if(total>24){badge.textContent='Over limit';badge.className='status-badge status-over';}
+else if(total>=20){badge.textContent='Approaching limit';badge.className='status-badge status-warn';}
+else{badge.textContent='On track';badge.className='status-badge status-ok';}
+var list=document.getElementById('shiftList');list.innerHTML='';
+if(shifts.length===0){list.innerHTML='<div class="empty-msg"><span class="big">&#128203;</span>No shifts logged yet this week</div>';}
+else{shifts.forEach(function(sh,idx){var div=document.createElement('div');div.className='shift-item';
+div.innerHTML='<div class="info"><strong>'+sh.employer+'</strong><span>'+sh.day+' - '+sh.start+'-'+sh.end+(sh.notes?' - '+sh.notes:'')+'</span></div><div><span class="hours">'+sh.hours.toFixed(1)+'h</span><button class="icon-btn edit-btn" data-k="'+k+'" data-i="'+idx+'">&#9998;</button><button class="icon-btn del-btn" data-k="'+k+'" data-i="'+idx+'">&#10005;</button></div>';
+list.appendChild(div);});
+list.querySelectorAll('.edit-btn').forEach(function(b){b.addEventListener('click',function(){startEdit(b.getAttribute('data-k'),parseInt(b.getAttribute('data-i'),10));});});
+list.querySelectorAll('.del-btn').forEach(function(b){b.addEventListener('click',function(){deleteShift(b.getAttribute('data-k'),parseInt(b.getAttribute('data-i'),10));});});}
+}
+function renderSummary(){
+var keys=Object.keys(data).sort();
+var totals=keys.map(function(k){return data[k].reduce(function(s,sh){return s+sh.hours;},0);});
+var avg=totals.length?(totals.reduce(function(a,b){return a+b;},0)/totals.length):0;
+var max=totals.length?Math.max.apply(null,totals):0;
+var overCount=keys.filter(function(k){var t=data[k].reduce(function(s,sh){return s+sh.hours;},0);return t>24&&!breakWeeks[k];}).length;
+document.getElementById('sumAvg').textContent=avg.toFixed(1);
+document.getElementById('sumMax').textContent=max.toFixed(1);
+document.getElementById('sumWeeks').textContent=keys.length;
+document.getElementById('sumOver').textContent=overCount;
+var employerTotals={};
+keys.forEach(function(k){data[k].forEach(function(sh){employerTotals[sh.employer]=(employerTotals[sh.employer]||0)+sh.hours;});});
+var empList=document.getElementById('employerList');empList.innerHTML='';
+var empKeys=Object.keys(employerTotals).sort(function(a,b){return employerTotals[b]-employerTotals[a];});
+if(empKeys.length===0){empList.innerHTML='<div class="empty-msg"><span class="big">&#128100;</span>No shifts logged yet</div>';}
+else{empKeys.forEach(function(n){var div=document.createElement('div');div.className='employer-row';div.innerHTML='<span>'+n+'</span><strong>'+employerTotals[n].toFixed(1)+'h</strong>';empList.appendChild(div);});}
+var historyList=document.getElementById('historyList');historyList.innerHTML='';
+if(keys.length===0){historyList.innerHTML='<div class="empty-msg"><span class="big">&#128197;</span>No history yet</div>';return;}
+keys.slice().reverse().forEach(function(k){
+var m=new Date(k);var total=data[k].reduce(function(s,sh){return s+sh.hours;},0);
+var isBreak=!!breakWeeks[k];var over=total>24&&!isBreak;
+var color=isBreak?'#FFA37A':(over?'#FF3D57':total>=20?'#FFC53D':'#3CF0A0');
+var div=document.createElement('div');div.className='history-week';
+div.innerHTML='<div class="hdr"><span>'+formatWeekLabel(m)+(isBreak?' (break)':'')+'</span><span style="color:'+color+'">'+total.toFixed(1)+'h '+(isBreak?'':(over?'(over)':'(ok)'))+'</span></div><div class="mini-bar"><div class="mini-fill" style="width:'+Math.min((total/(isBreak?40:24))*100,100)+'%;background:'+color+'"></div></div>';
+historyList.appendChild(div);});
+}
+function exportCSV(){
+var keys=Object.keys(data).sort();
+var rows=[['Week Start','Day','Employer','Start','End','Hours','Notes','Break Week']];
+keys.forEach(function(k){data[k].forEach(function(sh){rows.push([k,sh.day,sh.employer,sh.start,sh.end,sh.hours.toFixed(2),sh.notes||'',breakWeeks[k]?'Yes':'No']);});});
+var csv=rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+var blob=new Blob([csv],{type:'text/csv'});var url=URL.createObjectURL(blob);
+var a=document.createElement('a');a.href=url;a.download='work_hours_export.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+function switchView(name,btn){
+document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+document.querySelectorAll('.tab-btn').forEach(function(t){t.classList.remove('active');});
+document.getElementById('view-'+name).classList.add('active');btn.classList.add('active');
+if(name==='summary')renderSummary();
+}
+function resetData(){
+if(confirm('This will delete all logged shifts. Continue?')){data={};breakWeeks={};saveData();resetFormMode();renderWeek();renderSummary();}
+}
+window.changeWeek=changeWeek;window.switchView=switchView;window.resetData=resetData;window.exportCSV=exportCSV;
+document.getElementById('shiftForm').addEventListener('submit',submitForm);
+document.getElementById('cancelBtn').addEventListener('click',resetFormMode);
+document.getElementById('breakToggle').addEventListener('change',toggleBreak);
+renderWeek();
+})();
+</script>
 </body>
 </html>
