@@ -1,1 +1,25 @@
-PLACEHOLDER
+{
+  "name": "Work Hours Tracker",
+  "short_name": "Work Hours",
+  "description": "Track part-time work hours against the 24-hour weekly study permit cap.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1F4E78",
+  "theme_color": "#1F4E78",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
