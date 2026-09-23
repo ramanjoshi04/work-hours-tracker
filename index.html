@@ -7,34 +7,43 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Work Hours">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#5B3DF5">
+<meta name="theme-color" content="#4C2FE0">
 <title>Work Hours Tracker</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="icon" href="icon.svg">
 <style>
-:root{--bg:#f4f3fb;--card:#ffffff;--text:#1a1a2e;--sub:#6b6b80;--muted:#a0a0b3;
---accent:#5B3DF5;--accent2:#8B5CF6;--accent3:#22D3B8;--field-bg:#faf9ff;--field-border:#e6e3f7;--row-bg:#f6f4fd;
---shadow:0 4px 20px rgba(91,61,245,0.08)}
-@media(prefers-color-scheme:dark){:root{--bg:#0d0d17;--card:#181826;--text:#eeeef7;--sub:#a3a3bd;--muted:#6f6f8a;
---accent:#8B7CFA;--accent2:#A78BFA;--accent3:#2DD4BF;--field-bg:#12121d;--field-border:#2a2a3d;--row-bg:#1e1e30;
---shadow:0 4px 20px rgba(0,0,0,0.4)}}
+:root{--bg1:#EEF0FF;--bg2:#E4F7F1;--card:rgba(255,255,255,0.75);--cardsolid:#ffffff;--text:#1a1a2e;--sub:#68687e;--muted:#9d9dad;
+--accent:#4C2FE0;--accent2:#7C4DFF;--accent3:#14C9A5;--field-bg:#ffffff;--field-border:#e3e0f7;--row-bg:#f3f1fc;
+--shadow:0 8px 30px rgba(76,47,224,0.12);--border:rgba(255,255,255,0.6)}
+@media(prefers-color-scheme:dark){:root{--bg1:#0c0b16;--bg2:#0a1512;--card:rgba(26,24,40,0.75);--cardsolid:#181826;--text:#f0f0f8;--sub:#a3a3bd;--muted:#6f6f8a;
+--accent:#9C7CFF;--accent2:#B69AFF;--accent3:#2FE2C0;--field-bg:#141420;--field-border:#2a2a3d;--row-bg:#1c1c2c;
+--shadow:0 8px 30px rgba(0,0,0,0.5);--border:rgba(255,255,255,0.06)}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);padding-bottom:92px}
-header{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 55%,var(--accent3) 130%);color:#fff;
-padding:26px 20px 22px;position:sticky;top:0;z-index:10;box-shadow:0 6px 24px rgba(91,61,245,0.25);
-border-radius:0 0 24px 24px}
-header h1{margin:0 0 4px;font-size:21px;font-weight:800;letter-spacing:-0.3px}
-header p{margin:0;font-size:12px;opacity:0.9}
-.container{padding:16px;max-width:480px;margin:0 auto}
-.card{background:var(--card);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);padding-bottom:100px;
+background:radial-gradient(circle at 15% 0%,var(--bg1) 0%,transparent 55%),radial-gradient(circle at 85% 20%,var(--bg2) 0%,transparent 50%),var(--bg1);
+min-height:100vh}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+header{padding:30px 20px 26px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--card);backdrop-filter:blur(10px);
+padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;color:var(--accent);margin-bottom:12px;
+border:1px solid var(--border);animation:fadeUp .4s ease}
+header h1{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-0.5px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;
+animation:fadeUp .5s ease}
+header p{margin:0;font-size:12.5px;color:var(--sub);font-weight:500;animation:fadeUp .6s ease}
+.container{padding:0 16px 16px;max-width:480px;margin:0 auto}
+.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);
+border-radius:22px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow);animation:fadeUp .4s ease}
 .week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .week-nav button{background:var(--row-bg);border:none;color:var(--accent);font-size:18px;font-weight:bold;
-width:38px;height:38px;border-radius:12px;cursor:pointer}
-.week-label{font-weight:700;font-size:15px;text-align:center;flex:1}
+width:36px;height:36px;border-radius:12px;cursor:pointer;transition:transform .15s}
+.week-nav button:active{transform:scale(0.85)}
+.week-label{font-weight:700;font-size:14.5px;text-align:center;flex:1;color:var(--text)}
 .break-toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--row-bg);
-border-radius:12px;padding:11px 14px;margin-bottom:16px;font-size:13px;font-weight:500}
+border-radius:14px;padding:12px 15px;margin-bottom:18px;font-size:12.5px;font-weight:600;color:var(--sub)}
 .switch{position:relative;display:inline-block;width:44px;height:25px}
 .switch input{opacity:0;width:0;height:0}
 .slider{position:absolute;cursor:pointer;inset:0;background:#d4d0ec;transition:.3s;border-radius:25px}
@@ -42,16 +51,16 @@ border-radius:12px;padding:11px 14px;margin-bottom:16px;font-size:13px;font-weig
 transition:.3s;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
 input:checked+.slider{background:linear-gradient(135deg,var(--accent),var(--accent2))}
 input:checked+.slider:before{transform:translateX(19px)}
-.ring-wrap{display:flex;align-items:center;gap:18px;margin-bottom:8px}
-.ring{position:relative;width:96px;height:96px;flex-shrink:0}
-.ring svg{transform:rotate(-90deg)}
-.ring-bg{fill:none;stroke:var(--row-bg);stroke-width:10}
-.ring-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .6s ease,stroke .3s}
+.ring-wrap{display:flex;align-items:center;gap:20px}
+.ring{position:relative;width:104px;height:104px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg);filter:drop-shadow(0 2px 8px rgba(76,47,224,0.2))}
+.ring-bg{fill:none;stroke:var(--row-bg);stroke-width:11}
+.ring-fg{fill:none;stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .3s}
 .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring-center .num{font-size:19px;font-weight:800;color:var(--text)}
-.ring-center .unit{font-size:10px;color:var(--sub);margin-top:-2px}
+.ring-center .num{font-size:21px;font-weight:800;color:var(--text)}
+.ring-center .unit{font-size:10px;color:var(--sub);margin-top:-2px;font-weight:600}
 .ring-info{flex:1}
-.status-badge{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-top:4px}
+.status-badge{display:inline-flex;align-items:center;gap:4px;padding:6px 13px;border-radius:20px;font-size:11.5px;font-weight:700;margin-top:6px}
 .status-ok{background:linear-gradient(135deg,#d4f7e4,#c1f0da);color:#0f7a45}
 .status-warn{background:linear-gradient(135deg,#ffe9c2,#ffe0a8);color:#a6650c}
 .status-over{background:linear-gradient(135deg,#ffd9dc,#ffc7cc);color:#c22838}
@@ -59,60 +68,70 @@ input:checked+.slider:before{transform:translateX(19px)}
 @media(prefers-color-scheme:dark){
 .status-ok{background:#0f3323;color:#6fdb9a}.status-warn{background:#3a2e0a;color:#f0c14b}
 .status-over{background:#3a1620;color:#f28b8b}.status-break{background:#2a1e4a;color:#c3aef2}}
-.totals-row{font-size:12.5px;color:var(--sub);margin-top:6px}
-h3{font-size:15px;margin:0 0 12px;color:var(--text);font-weight:700;display:flex;align-items:center;gap:6px}
+.totals-row{font-size:12px;color:var(--sub);margin-top:5px;font-weight:600}
+h3{font-size:15px;margin:0 0 14px;color:var(--text);font-weight:800;display:flex;align-items:center;gap:7px}
+h3 .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
 .shift-item{display:flex;justify-content:space-between;align-items:center;background:var(--row-bg);
-border-radius:14px;padding:12px 14px;font-size:13px;margin-bottom:8px}
+border-radius:16px;padding:13px 15px;font-size:13px;margin-bottom:9px;animation:popIn .3s ease}
 .shift-item .info{display:flex;flex-direction:column;gap:3px;flex:1}
-.shift-item .info strong{font-size:13.5px;color:var(--text)}
+.shift-item .info strong{font-size:13.5px;color:var(--text);font-weight:700}
 .shift-item .info span{color:var(--sub);font-size:11.5px}
-.hours{font-weight:800;color:var(--accent);margin-right:8px;background:var(--card);padding:3px 8px;border-radius:8px;font-size:12px}
-.icon-btn{border:none;border-radius:9px;width:30px;height:30px;font-size:13px;cursor:pointer;margin-left:5px}
+.hours{font-weight:800;color:var(--accent);margin-right:8px;background:var(--cardsolid);padding:4px 9px;border-radius:9px;font-size:12px}
+.icon-btn{border:none;border-radius:10px;width:31px;height:31px;font-size:13px;cursor:pointer;margin-left:5px;transition:transform .15s}
+.icon-btn:active{transform:scale(0.85)}
 .edit-btn{background:#e5ddff;color:var(--accent)}
 .del-btn{background:#ffd9dc;color:#c22838}
 @media(prefers-color-scheme:dark){.edit-btn{background:#2a2350}.del-btn{background:#3a1620}}
-.empty-msg{color:var(--muted);font-size:13px;text-align:center;padding:16px 0}
-form label{display:block;font-size:12px;color:var(--sub);margin:12px 0 5px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
-form input,form select{width:100%;padding:12px;border:1.5px solid var(--field-border);border-radius:12px;font-size:14px;
+.empty-msg{color:var(--muted);font-size:13px;text-align:center;padding:24px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.empty-msg .big{font-size:32px;opacity:0.5}
+form label{display:block;font-size:11.5px;color:var(--sub);margin:14px 0 6px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px}
+form input,form select{width:100%;padding:13px;border:1.5px solid var(--field-border);border-radius:13px;font-size:14px;
 background:var(--field-bg);color:var(--text)}
-form input:focus,form select:focus{outline:none;border-color:var(--accent)}
+form input:focus,form select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(76,47,224,0.1)}
 .row2{display:flex;gap:10px}
 .row2>div{flex:1}
 .add-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;
-padding:14px;border-radius:14px;font-size:15px;font-weight:700;margin-top:16px;cursor:pointer;
-box-shadow:0 6px 16px rgba(91,61,245,0.3)}
+padding:15px;border-radius:16px;font-size:15px;font-weight:700;margin-top:18px;cursor:pointer;
+box-shadow:0 8px 20px rgba(76,47,224,0.35);transition:transform .12s}
+.add-btn:active{transform:scale(0.98)}
 .add-btn.success{background:linear-gradient(135deg,#22c55e,#16a34a)}
-.cancel-btn{width:100%;background:var(--row-bg);color:var(--sub);border:none;padding:12px;border-radius:12px;
-font-size:14px;font-weight:600;margin-top:8px;cursor:pointer}
-.secondary-btn{width:100%;background:var(--row-bg);color:var(--accent);border:none;padding:13px;border-radius:14px;
+.cancel-btn{width:100%;background:var(--row-bg);color:var(--sub);border:none;padding:13px;border-radius:14px;
+font-size:14px;font-weight:700;margin-top:9px;cursor:pointer}
+.secondary-btn{width:100%;background:var(--row-bg);color:var(--accent);border:none;padding:14px;border-radius:16px;
 font-size:14px;font-weight:700;margin-top:10px;cursor:pointer}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.summary-box{background:var(--row-bg);border-radius:14px;padding:14px;text-align:center}
-.summary-box .val{font-size:22px;font-weight:800;color:var(--accent)}
-.summary-box .lbl{font-size:11px;color:var(--sub);margin-top:3px;font-weight:600}
+.summary-box{background:var(--row-bg);border-radius:16px;padding:16px;text-align:center}
+.summary-box .val{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;background-clip:text;color:transparent}
+.summary-box .lbl{font-size:10.5px;color:var(--sub);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
 .employer-row{display:flex;justify-content:space-between;align-items:center;background:var(--row-bg);
-border-radius:12px;padding:11px 14px;margin-bottom:8px;font-size:13px}
+border-radius:14px;padding:12px 15px;margin-bottom:8px;font-size:13px}
 .employer-row strong{color:var(--accent);font-weight:800}
-.tabs{position:fixed;bottom:14px;left:14px;right:14px;background:var(--card);display:flex;border-radius:20px;
-box-shadow:0 8px 24px rgba(0,0,0,0.15);padding:6px;z-index:20}
-.tab-btn{flex:1;text-align:center;padding:10px 0 8px;font-size:11px;color:var(--muted);cursor:pointer;
-border:none;background:none;border-radius:14px;font-weight:700}
-.tab-btn.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-.tab-btn .ic{font-size:17px;display:block;margin-bottom:2px}
+.tabs{position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);display:flex;border-radius:22px;border:1px solid var(--border);
+box-shadow:0 10px 30px rgba(0,0,0,0.18);padding:7px;z-index:20;max-width:448px;margin:0 auto}
+.tab-btn{flex:1;text-align:center;padding:10px 0;font-size:11px;color:var(--muted);cursor:pointer;
+border:none;background:none;border-radius:16px;font-weight:700;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab-btn.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 12px rgba(76,47,224,0.3)}
+.tab-btn svg{width:19px;height:19px}
 .view{display:none}
-.view.active{display:block}
-.history-week{margin-bottom:14px;background:var(--row-bg);border-radius:14px;padding:12px}
-.history-week .hdr{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:8px}
-.mini-bar{height:8px;background:var(--card);border-radius:6px;overflow:hidden}
-.mini-fill{height:100%;border-radius:6px}
-#errorBanner{display:none;background:#ffd9dc;color:#c22838;font-size:12px;padding:10px 14px;border-radius:12px;margin:10px 16px 0}
+.view.active{display:block;animation:fadeUp .3s ease}
+.history-week{margin-bottom:12px;background:var(--row-bg);border-radius:16px;padding:14px}
+.history-week .hdr{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:9px}
+.mini-bar{height:8px;background:var(--cardsolid);border-radius:6px;overflow:hidden}
+.mini-fill{height:100%;border-radius:6px;transition:width .5s ease}
+#errorBanner{display:none;background:#ffd9dc;color:#c22838;font-size:12px;padding:10px 14px;border-radius:14px;margin:0 16px 12px}
 #installBtn{display:none;width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;
-padding:14px;border-radius:14px;font-size:15px;font-weight:700;margin-top:10px;cursor:pointer;
-box-shadow:0 6px 16px rgba(34,197,94,0.3)}
+padding:15px;border-radius:16px;font-size:15px;font-weight:700;margin-bottom:16px;cursor:pointer;
+box-shadow:0 8px 20px rgba(34,197,94,0.35)}
 </style>
 </head>
 <body>
-<header><h1>Work Hours Tracker</h1><p>24 hrs/week off-campus cap during term - unlimited on scheduled breaks</p></header>
+<header>
+<span class="hero-badge">&#10003; Study permit compliant</span>
+<h1>Work Hours Tracker</h1>
+<p>24 hrs/week off-campus cap during term - unlimited on scheduled breaks</p>
+</header>
 <div id="errorBanner"></div>
 <div class="container">
 <div class="view active" id="view-week">
@@ -122,9 +141,9 @@ box-shadow:0 6px 16px rgba(34,197,94,0.3)}
 <div class="break-toggle-row"><span>Scheduled break week (no cap)</span><label class="switch"><input type="checkbox" id="breakToggle"><span class="slider"></span></label></div>
 <div class="ring-wrap">
 <div class="ring">
-<svg width="96" height="96" viewBox="0 0 96 96">
-<circle class="ring-bg" cx="48" cy="48" r="40"></circle>
-<circle class="ring-fg" id="ringFg" cx="48" cy="48" r="40" stroke="#22c55e" stroke-dasharray="251.2" stroke-dashoffset="251.2"></circle>
+<svg width="104" height="104" viewBox="0 0 104 104">
+<circle class="ring-bg" cx="52" cy="52" r="44"></circle>
+<circle class="ring-fg" id="ringFg" cx="52" cy="52" r="44" stroke="#22c55e" stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
 </svg>
 <div class="ring-center"><span class="num" id="ringNum">0</span><span class="unit">hrs</span></div>
 </div>
@@ -135,8 +154,8 @@ box-shadow:0 6px 16px rgba(34,197,94,0.3)}
 </div>
 </div>
 </div>
-<div class="card"><h3>Shifts this week</h3><div id="shiftList"></div></div>
-<div class="card"><h3 id="formTitle">Add a shift</h3><form id="shiftForm">
+<div class="card"><h3><span class="dot"></span>Shifts this week</h3><div id="shiftList"></div></div>
+<div class="card"><h3 id="formTitle"><span class="dot"></span>Add a shift</h3><form id="shiftForm">
 <label>Employer</label><input type="text" id="employer" placeholder="e.g. Campus Cafe" required>
 <label>Day</label><select id="day"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select>
 <div class="row2"><div><label>Start time</label><input type="time" id="startTime" required></div><div><label>End time</label><input type="time" id="endTime" required></div></div>
@@ -146,27 +165,27 @@ box-shadow:0 6px 16px rgba(34,197,94,0.3)}
 </form></div>
 </div>
 <div class="view" id="view-summary">
-<div class="card"><h3>Overall summary</h3><div class="summary-grid">
+<div class="card"><h3><span class="dot"></span>Overall summary</h3><div class="summary-grid">
 <div class="summary-box"><div class="val" id="sumAvg">0</div><div class="lbl">Avg hrs/week</div></div>
-<div class="summary-box"><div class="val" id="sumMax">0</div><div class="lbl">Max in a week</div></div>
+<div class="summary-box"><div class="val" id="sumMax">0</div><div class="lbl">Max week</div></div>
 <div class="summary-box"><div class="val" id="sumWeeks">0</div><div class="lbl">Weeks tracked</div></div>
-<div class="summary-box"><div class="val" id="sumOver">0</div><div class="lbl">Weeks over 24 hrs</div></div>
+<div class="summary-box"><div class="val" id="sumOver">0</div><div class="lbl">Weeks over cap</div></div>
 </div></div>
-<div class="card"><h3>By employer (all time)</h3><div id="employerList"></div></div>
-<div class="card"><h3>Week-by-week history</h3><div id="historyList"></div></div>
+<div class="card"><h3><span class="dot"></span>By employer</h3><div id="employerList"></div></div>
+<div class="card"><h3><span class="dot"></span>Week-by-week history</h3><div id="historyList"></div></div>
 <div class="card"><button class="secondary-btn" onclick="exportCSV()">Export All Data (CSV)</button></div>
 </div>
 <div class="view" id="view-info">
-<div class="card"><h3>How this app works</h3><p style="font-size:13px;color:var(--sub);line-height:1.6;">Log each shift with day, start and end time - hours calculate automatically against the 24-hour/week off-campus cap. Toggle "Scheduled break week" during winter/summer break when the cap doesn't apply. Co-op hours are authorized separately and don't count toward this limit.</p></div>
-<div class="card"><h3>Editing shifts</h3><p style="font-size:13px;color:var(--sub);line-height:1.6;">Tap Edit on any shift to load it into the form, change it, and tap Save Changes. Tap X to delete.</p></div>
-<div class="card"><h3>Your data</h3><p style="font-size:13px;color:var(--sub);line-height:1.6;">Stored privately on your phone. Use Export All Data for a CSV backup.</p>
-<button class="add-btn" style="background:linear-gradient(135deg,#ef4444,#dc2626);" onclick="resetData()">Clear All Data</button></div>
+<div class="card"><h3><span class="dot"></span>How this app works</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Log each shift with day, start and end time - hours calculate automatically against the 24-hour/week off-campus cap. Toggle "Scheduled break week" during winter/summer break when the cap doesn't apply. Co-op hours are authorized separately and don't count toward this limit.</p></div>
+<div class="card"><h3><span class="dot"></span>Editing shifts</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Tap the pencil icon on any shift to load it into the form, change it, and tap Save Changes. Tap the X to delete.</p></div>
+<div class="card"><h3><span class="dot"></span>Your data</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Stored privately on your phone. Use Export All Data for a CSV backup.</p>
+<button class="add-btn" style="background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 8px 20px rgba(239,68,68,0.35);" onclick="resetData()">Clear All Data</button></div>
 </div>
 </div>
 <div class="tabs">
-<button class="tab-btn active" onclick="switchView('week', this)"><span class="ic">&#128197;</span>Week</button>
-<button class="tab-btn" onclick="switchView('summary', this)"><span class="ic">&#128202;</span>Summary</button>
-<button class="tab-btn" onclick="switchView('info', this)"><span class="ic">&#8505;&#65039;</span>Info</button>
+<button class="tab-btn active" onclick="switchView('week', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Week</button>
+<button class="tab-btn" onclick="switchView('summary', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 20V10M12 20V4M18 20v-7"/></svg>Summary</button>
+<button class="tab-btn" onclick="switchView('info', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>Info</button>
 </div>
 <script>
 (function(){
@@ -179,14 +198,14 @@ var storageAvailable=true;try{localStorage.setItem('__t__','1');localStorage.rem
 var STORAGE_KEY='workHoursTrackerData';var BREAK_KEY='workHoursTrackerBreaks';var data={};var breakWeeks={};
 try{var raw=storageAvailable?localStorage.getItem(STORAGE_KEY):null;data=raw?JSON.parse(raw):{};var rawB=storageAvailable?localStorage.getItem(BREAK_KEY):null;breakWeeks=rawB?JSON.parse(rawB):{};}catch(e){data={};breakWeeks={};}
 var currentWeekOffset=0;var editingKey=null;var editingIdx=null;
-var RING_C=2*Math.PI*40;
+var RING_C=2*Math.PI*44;
 function getWeekStart(o){var n=new Date();var d=n.getDay();var diff=(d===0?-6:1-d);var m=new Date(n);m.setDate(n.getDate()+diff+o*7);m.setHours(0,0,0,0);return m;}
 function weekKey(m){return m.toISOString().split('T')[0];}
 function formatWeekLabel(m){var s=new Date(m);s.setDate(m.getDate()+6);var o={month:'short',day:'numeric'};return m.toLocaleDateString(undefined,o)+' - '+s.toLocaleDateString(undefined,o);}
 function hoursBetween(a,b){var sp=a.split(':').map(Number);var ep=b.split(':').map(Number);var mins=(ep[0]*60+ep[1])-(sp[0]*60+sp[1]);if(mins<0)mins+=1440;return mins/60;}
 function saveData(){if(storageAvailable){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));localStorage.setItem(BREAK_KEY,JSON.stringify(breakWeeks));}catch(e){}}}
-function resetFormMode(){editingKey=null;editingIdx=null;document.getElementById('formTitle').textContent='Add a shift';document.getElementById('submitBtn').textContent='+ Add Shift';document.getElementById('submitBtn').classList.remove('success');document.getElementById('cancelBtn').style.display='none';document.getElementById('shiftForm').reset();}
-function startEdit(k,i){var sh=data[k][i];editingKey=k;editingIdx=i;document.getElementById('employer').value=sh.employer;document.getElementById('day').value=sh.day;document.getElementById('startTime').value=sh.start;document.getElementById('endTime').value=sh.end;document.getElementById('notes').value=sh.notes||'';document.getElementById('formTitle').textContent='Edit shift';document.getElementById('submitBtn').textContent='Save Changes';document.getElementById('cancelBtn').style.display='block';}
+function resetFormMode(){editingKey=null;editingIdx=null;document.getElementById('formTitle').innerHTML='<span class="dot"></span>Add a shift';document.getElementById('submitBtn').textContent='+ Add Shift';document.getElementById('submitBtn').classList.remove('success');document.getElementById('cancelBtn').style.display='none';document.getElementById('shiftForm').reset();}
+function startEdit(k,i){var sh=data[k][i];editingKey=k;editingIdx=i;document.getElementById('employer').value=sh.employer;document.getElementById('day').value=sh.day;document.getElementById('startTime').value=sh.start;document.getElementById('endTime').value=sh.end;document.getElementById('notes').value=sh.notes||'';document.getElementById('formTitle').innerHTML='<span class="dot"></span>Edit shift';document.getElementById('submitBtn').textContent='Save Changes';document.getElementById('cancelBtn').style.display='block';}
 function submitForm(e){e.preventDefault();var employer=document.getElementById('employer').value.trim();var day=document.getElementById('day').value;var start=document.getElementById('startTime').value;var end=document.getElementById('endTime').value;var notes=document.getElementById('notes').value.trim();var hrs=hoursBetween(start,end);if(editingKey!==null&&editingIdx!==null){data[editingKey][editingIdx]={employer:employer,day:day,start:start,end:end,hours:hrs,notes:notes};}else{var m=getWeekStart(currentWeekOffset);var k=weekKey(m);if(!data[k])data[k]=[];data[k].push({employer:employer,day:day,start:start,end:end,hours:hrs,notes:notes});}saveData();resetFormMode();renderWeek();}
 function deleteShift(k,i){data[k].splice(i,1);saveData();renderWeek();}
 function changeWeek(d){currentWeekOffset+=d;resetFormMode();renderWeek();}
@@ -206,12 +225,12 @@ document.getElementById('ringNum').textContent=total.toFixed(1);
 document.getElementById('totalHoursLabel').textContent=total.toFixed(1)+' hrs logged';
 document.getElementById('capLabel').textContent=isBreak?'No cap (break week)':'24 hr cap';
 var badge=document.getElementById('statusBadge');
-if(isBreak){badge.textContent='Break week - no cap';badge.className='status-badge status-break';}
-else if(total>24){badge.textContent='OVER 24-HR LIMIT';badge.className='status-badge status-over';}
+if(isBreak){badge.textContent='Break week';badge.className='status-badge status-break';}
+else if(total>24){badge.textContent='Over limit';badge.className='status-badge status-over';}
 else if(total>=20){badge.textContent='Approaching limit';badge.className='status-badge status-warn';}
-else{badge.textContent='OK';badge.className='status-badge status-ok';}
+else{badge.textContent='On track';badge.className='status-badge status-ok';}
 var list=document.getElementById('shiftList');list.innerHTML='';
-if(shifts.length===0){list.innerHTML='<div class="empty-msg">No shifts logged yet this week.</div>';}
+if(shifts.length===0){list.innerHTML='<div class="empty-msg"><span class="big">&#128203;</span>No shifts logged yet this week</div>';}
 else{shifts.forEach(function(sh,idx){var div=document.createElement('div');div.className='shift-item';
 div.innerHTML='<div class="info"><strong>'+sh.employer+'</strong><span>'+sh.day+' - '+sh.start+'-'+sh.end+(sh.notes?' - '+sh.notes:'')+'</span></div><div><span class="hours">'+sh.hours.toFixed(1)+'h</span><button class="icon-btn edit-btn" data-k="'+k+'" data-i="'+idx+'">&#9998;</button><button class="icon-btn del-btn" data-k="'+k+'" data-i="'+idx+'">&#10005;</button></div>';
 list.appendChild(div);});
@@ -232,10 +251,10 @@ var employerTotals={};
 keys.forEach(function(k){data[k].forEach(function(sh){employerTotals[sh.employer]=(employerTotals[sh.employer]||0)+sh.hours;});});
 var empList=document.getElementById('employerList');empList.innerHTML='';
 var empKeys=Object.keys(employerTotals).sort(function(a,b){return employerTotals[b]-employerTotals[a];});
-if(empKeys.length===0){empList.innerHTML='<div class="empty-msg">No shifts logged yet.</div>';}
+if(empKeys.length===0){empList.innerHTML='<div class="empty-msg"><span class="big">&#128100;</span>No shifts logged yet</div>';}
 else{empKeys.forEach(function(n){var div=document.createElement('div');div.className='employer-row';div.innerHTML='<span>'+n+'</span><strong>'+employerTotals[n].toFixed(1)+'h</strong>';empList.appendChild(div);});}
 var historyList=document.getElementById('historyList');historyList.innerHTML='';
-if(keys.length===0){historyList.innerHTML='<div class="empty-msg">No history yet.</div>';return;}
+if(keys.length===0){historyList.innerHTML='<div class="empty-msg"><span class="big">&#128197;</span>No history yet</div>';return;}
 keys.slice().reverse().forEach(function(k){
 var m=new Date(k);var total=data[k].reduce(function(s,sh){return s+sh.hours;},0);
 var isBreak=!!breakWeeks[k];var over=total>24&&!isBreak;
