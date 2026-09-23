@@ -7,23 +7,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Work Hours">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0B0E1A">
+<meta name="theme-color" content="#1A0B0E">
 <title>Work Hours Tracker</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="icon" href="icon.svg">
 <style>
-:root{--bg:#0B0E1A;--bg2:#12162B;--card:#161B33;--text:#F2F4FF;--sub:#9AA3C4;--muted:#5C6491;
---accent:#00D9FF;--accent2:#4361EE;--accent3:#7B2FF7;--pill-bg:rgba(0,217,255,0.14);--pill-text:#5FE8FF;
---field-bg:#1D2240;--field-border:#2A3055;--row-bg:#1A1F3A;--shadow:0 8px 24px rgba(0,0,0,0.4)}
+:root{--bg:#1A0B0E;--bg2:#26100F;--card:#2A1418;--text:#FDEEEE;--sub:#C89A9E;--muted:#7A5459;
+--accent:#FF3D57;--accent2:#FF6B35;--accent3:#FFB199;--field-bg:#33191D;--field-border:#4A2429;--row-bg:#331A1E;
+--shadow:0 8px 24px rgba(0,0,0,0.5)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);padding-bottom:100px;
 background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);min-height:100vh}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
-.hero{margin:14px 14px 0;border-radius:28px;background:linear-gradient(135deg,#00D9FF 0%,#4361EE 55%,#7B2FF7 120%);
-padding:28px 20px 24px;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(67,97,238,0.35);animation:fadeUp .4s ease}
+.hero{margin:14px 14px 0;border-radius:28px;background:linear-gradient(135deg,#FF3D57 0%,#FF6B35 55%,#FFB199 120%);
+padding:28px 20px 24px;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(255,61,87,0.35);animation:fadeUp .4s ease}
 .hero-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .hero-topbar .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#fff}
 .hero-avatar{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:14px}
@@ -31,14 +31,14 @@ padding:28px 20px 24px;position:relative;overflow:hidden;box-shadow:0 12px 32px 
 justify-content:center;margin:0 auto 14px;backdrop-filter:blur(6px)}
 .hero-icon svg{width:34px;height:34px;color:#fff}
 .hero h1{margin:0 0 4px;font-size:21px;font-weight:800;text-align:center;color:#fff;letter-spacing:-0.3px}
-.hero .byline{text-align:center;font-size:12px;color:rgba(255,255,255,0.85);margin-bottom:16px}
+.hero .byline{text-align:center;font-size:12px;color:rgba(255,255,255,0.9);margin-bottom:16px}
 .tag-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.tag-pill{background:rgba(255,255,255,0.22);color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;backdrop-filter:blur(4px)}
+.tag-pill{background:rgba(255,255,255,0.24);color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;backdrop-filter:blur(4px)}
 .container{padding:16px;max-width:480px;margin:0 auto}
 .card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:18px;margin-bottom:14px;
 box-shadow:var(--shadow);animation:fadeUp .4s ease}
 .week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.week-nav button{background:var(--row-bg);border:none;color:var(--accent);font-size:18px;font-weight:bold;
+.week-nav button{background:var(--row-bg);border:none;color:var(--accent2);font-size:18px;font-weight:bold;
 width:36px;height:36px;border-radius:12px;cursor:pointer;transition:transform .15s}
 .week-nav button:active{transform:scale(0.85)}
 .week-label{font-weight:700;font-size:14.5px;text-align:center;flex:1;color:var(--text)}
@@ -46,14 +46,14 @@ width:36px;height:36px;border-radius:12px;cursor:pointer;transition:transform .1
 border-radius:14px;padding:12px 15px;margin-bottom:18px;font-size:12.5px;font-weight:600;color:var(--sub)}
 .switch{position:relative;display:inline-block;width:44px;height:25px}
 .switch input{opacity:0;width:0;height:0}
-.slider{position:absolute;cursor:pointer;inset:0;background:#2A3055;transition:.3s;border-radius:25px}
+.slider{position:absolute;cursor:pointer;inset:0;background:#4A2429;transition:.3s;border-radius:25px}
 .slider:before{position:absolute;content:'';height:19px;width:19px;left:3px;bottom:3px;background:#fff;
 transition:.3s;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
 input:checked+.slider{background:linear-gradient(135deg,var(--accent),var(--accent2))}
 input:checked+.slider:before{transform:translateX(19px)}
 .ring-wrap{display:flex;align-items:center;gap:20px}
 .ring{position:relative;width:104px;height:104px;flex-shrink:0}
-.ring svg{transform:rotate(-90deg);filter:drop-shadow(0 2px 10px rgba(0,217,255,0.35))}
+.ring svg{transform:rotate(-90deg);filter:drop-shadow(0 2px 10px rgba(255,61,87,0.4))}
 .ring-bg{fill:none;stroke:var(--row-bg);stroke-width:11}
 .ring-fg{fill:none;stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .3s}
 .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -61,10 +61,10 @@ input:checked+.slider:before{transform:translateX(19px)}
 .ring-center .unit{font-size:10px;color:var(--sub);margin-top:-2px;font-weight:600}
 .ring-info{flex:1}
 .status-badge{display:inline-flex;align-items:center;gap:4px;padding:6px 13px;border-radius:20px;font-size:11.5px;font-weight:700;margin-top:6px}
-.status-ok{background:rgba(0,230,150,0.15);color:#3CF0A0}
+.status-ok{background:rgba(60,240,160,0.15);color:#5FF0B0}
 .status-warn{background:rgba(255,184,0,0.15);color:#FFC53D}
-.status-over{background:rgba(255,64,90,0.15);color:#FF6B81}
-.status-break{background:rgba(123,47,247,0.18);color:#B98CFF}
+.status-over{background:rgba(255,61,87,0.18);color:#FF7A8C}
+.status-break{background:rgba(255,107,53,0.18);color:#FFA37A}
 .totals-row{font-size:12px;color:var(--sub);margin-top:5px;font-weight:600}
 h3{font-size:15px;margin:0 0 14px;color:var(--text);font-weight:800;display:flex;align-items:center;gap:7px}
 h3 .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
@@ -73,28 +73,28 @@ border-radius:16px;padding:13px 15px;font-size:13px;margin-bottom:9px;animation:
 .shift-item .info{display:flex;flex-direction:column;gap:3px;flex:1}
 .shift-item .info strong{font-size:13.5px;color:var(--text);font-weight:700}
 .shift-item .info span{color:var(--sub);font-size:11.5px}
-.hours{font-weight:800;color:#0B0E1A;margin-right:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:4px 10px;border-radius:9px;font-size:12px}
+.hours{font-weight:800;color:#1A0B0E;margin-right:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:4px 10px;border-radius:9px;font-size:12px}
 .icon-btn{border:none;border-radius:10px;width:31px;height:31px;font-size:13px;cursor:pointer;margin-left:5px;transition:transform .15s}
 .icon-btn:active{transform:scale(0.85)}
-.edit-btn{background:rgba(0,217,255,0.15);color:var(--accent)}
-.del-btn{background:rgba(255,64,90,0.15);color:#FF6B81}
+.edit-btn{background:rgba(255,107,53,0.18);color:var(--accent2)}
+.del-btn{background:rgba(255,61,87,0.18);color:var(--accent)}
 .empty-msg{color:var(--muted);font-size:13px;text-align:center;padding:24px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
 .empty-msg .big{font-size:32px;opacity:0.4}
 form label{display:block;font-size:11.5px;color:var(--sub);margin:14px 0 6px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px}
 form input,form select{width:100%;padding:13px;border:1.5px solid var(--field-border);border-radius:13px;font-size:14px;
 background:var(--field-bg);color:var(--text)}
 form input::placeholder{color:var(--muted)}
-form input:focus,form select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,217,255,0.15)}
+form input:focus,form select:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 0 3px rgba(255,107,53,0.18)}
 .row2{display:flex;gap:10px}
 .row2>div{flex:1}
-.add-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0B0E1A;border:none;
+.add-btn{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;
 padding:15px;border-radius:16px;font-size:15px;font-weight:800;margin-top:18px;cursor:pointer;
-box-shadow:0 8px 22px rgba(0,217,255,0.3);transition:transform .12s}
+box-shadow:0 8px 22px rgba(255,61,87,0.4);transition:transform .12s}
 .add-btn:active{transform:scale(0.98)}
-.add-btn.success{background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#0B0E1A}
+.add-btn.success{background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#1A0B0E}
 .cancel-btn{width:100%;background:var(--row-bg);color:var(--sub);border:none;padding:13px;border-radius:14px;
 font-size:14px;font-weight:700;margin-top:9px;cursor:pointer}
-.secondary-btn{width:100%;background:var(--row-bg);color:var(--accent);border:none;padding:14px;border-radius:16px;
+.secondary-btn{width:100%;background:var(--row-bg);color:var(--accent2);border:none;padding:14px;border-radius:16px;
 font-size:14px;font-weight:700;margin-top:10px;cursor:pointer}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .summary-box{background:var(--row-bg);border-radius:16px;padding:16px;text-align:center}
@@ -103,21 +103,21 @@ font-size:14px;font-weight:700;margin-top:10px;cursor:pointer}
 .summary-box .lbl{font-size:10.5px;color:var(--sub);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
 .employer-row{display:flex;justify-content:space-between;align-items:center;background:var(--row-bg);
 border-radius:14px;padding:12px 15px;margin-bottom:8px;font-size:13px}
-.employer-row strong{color:var(--accent);font-weight:800}
+.employer-row strong{color:var(--accent2);font-weight:800}
 .tabs{position:fixed;bottom:16px;left:16px;right:16px;background:var(--card);border:1px solid rgba(255,255,255,0.08);
-display:flex;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,0.4);padding:7px;z-index:20;max-width:448px;margin:0 auto}
+display:flex;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,0.5);padding:7px;z-index:20;max-width:448px;margin:0 auto}
 .tab-btn{flex:1;text-align:center;padding:10px 0;font-size:11px;color:var(--muted);cursor:pointer;
 border:none;background:none;border-radius:16px;font-weight:700;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px}
-.tab-btn.active{color:#0B0E1A;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 14px rgba(0,217,255,0.4)}
+.tab-btn.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 14px rgba(255,61,87,0.45)}
 .tab-btn svg{width:19px;height:19px}
 .view{display:none}
 .view.active{display:block;animation:fadeUp .3s ease}
 .history-week{margin-bottom:12px;background:var(--row-bg);border-radius:16px;padding:14px}
 .history-week .hdr{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:9px}
-.mini-bar{height:8px;background:#0B0E1A;border-radius:6px;overflow:hidden}
+.mini-bar{height:8px;background:#1A0B0E;border-radius:6px;overflow:hidden}
 .mini-fill{height:100%;border-radius:6px;transition:width .5s ease}
-#errorBanner{display:none;background:rgba(255,64,90,0.15);color:#FF6B81;font-size:12px;padding:10px 14px;border-radius:14px;margin:12px 16px 0}
-#installBtn{display:none;width:100%;background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#0B0E1A;border:none;
+#errorBanner{display:none;background:rgba(255,61,87,0.18);color:#FF7A8C;font-size:12px;padding:10px 14px;border-radius:14px;margin:12px 16px 0}
+#installBtn{display:none;width:100%;background:linear-gradient(135deg,#3CF0A0,#00C87A);color:#1A0B0E;border:none;
 padding:15px;border-radius:16px;font-size:15px;font-weight:800;margin-bottom:14px;cursor:pointer;
 box-shadow:0 8px 20px rgba(60,240,160,0.3)}
 </style>
@@ -186,7 +186,7 @@ box-shadow:0 8px 20px rgba(60,240,160,0.3)}
 <div class="card"><h3><span class="dot"></span>How this app works</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Log each shift with day, start and end time - hours calculate automatically against the 24-hour/week off-campus cap. Toggle "Scheduled break week" during winter/summer break when the cap doesn't apply. Co-op hours are authorized separately and don't count toward this limit.</p></div>
 <div class="card"><h3><span class="dot"></span>Editing shifts</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Tap the pencil icon on any shift to load it into the form, change it, and tap Save Changes. Tap the X to delete.</p></div>
 <div class="card"><h3><span class="dot"></span>Your data</h3><p style="font-size:13px;color:var(--sub);line-height:1.7;">Stored privately on your phone. Use Export All Data for a CSV backup.</p>
-<button class="add-btn" style="background:linear-gradient(135deg,#FF6B81,#FF4058);color:#fff;box-shadow:0 8px 20px rgba(255,64,88,0.3);" onclick="resetData()">Clear All Data</button></div>
+<button class="add-btn" style="background:linear-gradient(135deg,#8B1E2E,#5C1420);color:#fff;box-shadow:0 8px 20px rgba(139,30,46,0.4);" onclick="resetData()">Clear All Data</button></div>
 </div>
 </div>
 <div class="tabs">
@@ -226,7 +226,7 @@ var cap=isBreak?40:24;var pct=Math.min(total/cap,1);
 var offset=RING_C-(pct*RING_C);
 var ringFg=document.getElementById('ringFg');
 ringFg.style.strokeDashoffset=offset;
-var color=isBreak?'#B98CFF':(total>24?'#FF6B81':total>=20?'#FFC53D':'#3CF0A0');
+var color=isBreak?'#FFA37A':(total>24?'#FF3D57':total>=20?'#FFC53D':'#3CF0A0');
 ringFg.setAttribute('stroke',color);
 document.getElementById('ringNum').textContent=total.toFixed(1);
 document.getElementById('totalHoursLabel').textContent=total.toFixed(1)+' hrs logged';
@@ -265,7 +265,7 @@ if(keys.length===0){historyList.innerHTML='<div class="empty-msg"><span class="b
 keys.slice().reverse().forEach(function(k){
 var m=new Date(k);var total=data[k].reduce(function(s,sh){return s+sh.hours;},0);
 var isBreak=!!breakWeeks[k];var over=total>24&&!isBreak;
-var color=isBreak?'#B98CFF':(over?'#FF6B81':total>=20?'#FFC53D':'#3CF0A0');
+var color=isBreak?'#FFA37A':(over?'#FF3D57':total>=20?'#FFC53D':'#3CF0A0');
 var div=document.createElement('div');div.className='history-week';
 div.innerHTML='<div class="hdr"><span>'+formatWeekLabel(m)+(isBreak?' (break)':'')+'</span><span style="color:'+color+'">'+total.toFixed(1)+'h '+(isBreak?'':(over?'(over)':'(ok)'))+'</span></div><div class="mini-bar"><div class="mini-fill" style="width:'+Math.min((total/(isBreak?40:24))*100,100)+'%;background:'+color+'"></div></div>';
 historyList.appendChild(div);});
